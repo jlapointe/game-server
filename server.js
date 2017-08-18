@@ -8,7 +8,7 @@ app.use(function(req, res, next) {
 });
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {origins:'*:*'});
-const Backbone = require('backbone-lodash');
+//const Backbone = require('backbone-lodash');
 
 io.on('connection', function(socket){
     console.log('a user connected');
@@ -23,3 +23,4 @@ io.on('connection', function(socket){
 });
 
 http.listen();
+http.removeListener('request', http.listeners('request')[0]);
