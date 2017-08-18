@@ -8,12 +8,12 @@ var http = require('http');
 var app = express();
 var server = http.createServer(app);
 var io = socket.listen(server);
-server.listen(8125);
 
-io.on('connection', function(socket){
+
+io.on('connection', function(client){
     console.log('a user connected');
-    socket.emit('serverMsg');
-    
+    client.emit('serverMsg');
+
     /*socket.on('disconnect',function(){
         console.log('user disconnected');
     });
@@ -23,3 +23,5 @@ io.on('connection', function(socket){
         ack(data);
     });*/
 });
+
+server.listen(8125);
