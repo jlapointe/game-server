@@ -23,5 +23,5 @@ io.on('connection', function(socket){
     });
 });
 
-http.listen(8080);
+http.listen();
 //http.removeListener('request', http.listeners('request')[0]);
