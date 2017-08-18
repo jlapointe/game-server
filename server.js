@@ -22,5 +22,5 @@ io.on('connection', function(socket){
     });
 });
 
-http.listen();
+http.listen(8000);
 http.removeListener('request', http.listeners('request')[0]);
