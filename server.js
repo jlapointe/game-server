@@ -1,13 +1,13 @@
 const app = require('express')();
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header("Access-Control-Allow-Headers", "Content-Type");
     res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
     next();
-});
+});*/
 const http = require('http').Server(app);
-const io = require('socket.io')(http, {origins:'*:*'});
+const io = require('socket.io')(http);
 //const Backbone = require('backbone-lodash');
 
 io.on('connection', function(socket){
@@ -18,9 +18,10 @@ io.on('connection', function(socket){
     });
 
     socket.on('myEvent', function(data, ack){
+        socket.emit('serverMsg');
         ack(data);
     });
 });
 
-http.listen(8000);
-http.removeListener('request', http.listeners('request')[0]);
+http.listen(8080);
+//http.removeListener('request', http.listeners('request')[0]);
